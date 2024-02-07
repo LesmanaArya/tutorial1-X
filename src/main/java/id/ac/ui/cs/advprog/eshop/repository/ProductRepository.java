@@ -26,12 +26,21 @@ public class ProductRepository {
     public Iterator<Product> findAll() {
         return productData.iterator();
     }
-  
+
+    public Product findProductByName(String name) {
+        for (Product product : productData) {
+            if (product.getProductName().equals(name)) {
+                return product;
+            }
+        }
+        return null;
+    }
     public Product deleteProductByName(String name) {
         Product yangMauDihapus = findProductByName(name);
         productData.remove(yangMauDihapus);
         productData.sort((p1, p2) -> p1.getProductName().compareTo(p2.getProductName()));
         return yangMauDihapus;
+    }
 
     public Product editProduct(String name, Product newProduct) {
         Product product = findProductByName(name);

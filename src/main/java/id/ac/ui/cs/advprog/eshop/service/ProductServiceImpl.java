@@ -32,6 +32,7 @@ public class ProductServiceImpl implements ProductService {
   
     public Product deleteProductByName(String name) {
         return productRepository.deleteProductByName(name);
+    }
 
     public Product findProductByName(String name) {
         return productRepository.findProductByName(name);
