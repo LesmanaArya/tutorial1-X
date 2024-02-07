@@ -11,10 +11,6 @@ import java.util.Iterator;
 public class ProductRepository {
     private List<Product> productData = new ArrayList<>();
 
-    public List<Product> getProductData() {
-        return productData;
-    }
-
     public Product create(Product product) {
         Product sameProductName = findProductByName(product.getProductName());
         if (sameProductName != null) {
