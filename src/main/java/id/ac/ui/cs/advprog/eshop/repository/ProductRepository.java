@@ -22,11 +22,14 @@ public class ProductRepository {
             return sameProductName;
         } else {
             productData.add(product);
-            productData.sort((p1, p2) -> p1.getProductName().compareTo(p2.getProductName()));
+            productData.sort(Comparator.comparing(Product::getProductName));
             return product;
         }
     }
 
+    public List<Product> getProductData() {
+        return productData;
+    }
     public Iterator<Product> findAll() {
         return productData.iterator();
     }
@@ -42,7 +45,7 @@ public class ProductRepository {
     public Product deleteProductByName(String name) {
         Product yangMauDihapus = findProductByName(name);
         productData.remove(yangMauDihapus);
-        productData.sort((p1, p2) -> p1.getProductName().compareTo(p2.getProductName()));
+        productData.sort(Comparator.comparing(Product::getProductName));
         return yangMauDihapus;
     }
 
