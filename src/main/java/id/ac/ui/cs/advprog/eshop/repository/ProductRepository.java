@@ -11,6 +11,10 @@ import java.util.Iterator;
 public class ProductRepository {
     private List<Product> productData = new ArrayList<>();
 
+    public List<Product> getProductData() {
+        return productData;
+    }
+
     public Product create(Product product) {
         Product sameProductName = findProductByName(product.getProductName());
         if (sameProductName != null) {
@@ -46,6 +50,7 @@ public class ProductRepository {
         Product product = findProductByName(name);
         product.setProductName(newProduct.getProductName());
         product.setProductQuantity(newProduct.getProductQuantity());
+        product.setProductId(newProduct.getProductId());
         return product;
     }
 }
