@@ -19,12 +19,12 @@ class HomePageFunctionalTest {
      * The port number assigned to the running application during test execution.
      * Set automatically during each test run by Spring Framework's test context.
      */
-    @LocalServerPort private int serverPort = 8080;
+    @LocalServerPort private int serverPort;
     /**
      * The base URL for testing. Default to {@code http://localhost}.
      */
     @Value("${app.baseUrl:http://localhost}")
-    private String testBaseUrl = "/product/list";
+    private String testBaseUrl;
     private String baseUrl;
     @BeforeEach
     void setupTest() {
