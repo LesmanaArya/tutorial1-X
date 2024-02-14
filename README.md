@@ -52,3 +52,13 @@ produk yang kita buat berhasil ditambahkan atau tidak di home page, kita langsun
 item yang sudah ada lalu verifikasi dengan unit test kita tanpa perlu buat class baru. Jika buat class baru apalagi setup procedure dan
 instance variable nya sama seperti file createProductFunctional.java, saya rasa akan sayang dan malah
 menambah sesuatu yang sebenarnya bisa dipermudah
+<br />
+---
+Reflection 3
+<br />
+1. Ada beberapa aspek unit test yang terlewat, yaitu di package Controller mengenai mapping url ke halaman html. Hal ini merupakan hal yang penting
+karena memastikan bahwa url yang kita cari itu ada dan halamannya ditampilkan dengan benar. Saya membuat test nya menggunakan mock. Selain itu
+membuat unit test tambahan lain yaitu tes executable eshop, dan tes productRepository bagian jika kita menambah produk
+dengan nama sama, hal ini bertujuan agar meningkatkan code coverage.
+2. Saat saya psuh readme ini, Sonarcloud saya masih gagal. Saya bisa bilang bahwa implementasi saya sekarang
+masih kurang karena masih ada workflow yang gagal
