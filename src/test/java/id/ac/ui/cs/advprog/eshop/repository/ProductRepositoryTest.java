@@ -37,6 +37,22 @@ class ProductRepositoryTest {
     }
 
     @Test
+    void createProductWithSameName() {
+        Product product1 = new Product();
+        product1.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        product1.setProductName("Sampo Cap Bambang");
+        product1.setProductQuantity(100);
+        productRepository.create(product1);
+
+        Product product2 = new Product();
+        product2.setProductId("eb558e9f-1c39-460e-8860-71af6afw65453ww");
+        product2.setProductName("Sampo Cap Bambang");
+        product2.setProductQuantity(100);
+        productRepository.create(product2);
+        assertEquals(200, productRepository.findProductByName("Sampo Cap Bambang").getProductQuantity());
+    }
+
+    @Test
     void testFindAllIfEmpty() {
         Iterator<Product> productIterator = productRepository.findAll();
         assertFalse(productIterator.hasNext());
