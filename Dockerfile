@@ -1,7 +1,7 @@
 FROM docker.io/library/eclipse-temurin:21-jdk-alpine AS builder
 
 WORKDIR /src/advshop
-COPY . .
+COPY src/main/java/id/ac/ui/cs/advprog/eshop/controller .
 RUN ./gradlew clean bootJar
 
 FROM docker.io/library/eclipse-temurin:21-jre-alpine AS runner
