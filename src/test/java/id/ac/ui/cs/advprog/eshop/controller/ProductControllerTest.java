@@ -67,4 +67,5 @@ public class ProductControllerTest {
         String productName = "Susu Milo";
         assertEquals("redirect:../list", productController.deleteProduct(productName));
     }
+
 }
