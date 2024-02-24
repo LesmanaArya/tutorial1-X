@@ -24,6 +24,7 @@ public class CarServiceImplTest {
 
     @Test
     void testCreateAndFindAll(){
+
         Car car = new Car();
         car.setCarQuantity(10);
         car.setCarId("ef558e9f-1a39-460f-8860-71av6cd63bd6");
