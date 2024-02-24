@@ -1,4 +1,4 @@
-Link deployment Koyeb : https://eshop-offline-universitasindonesia123.koyeb.app/
+Link deployment Koyeb : https://eshop-offline-universitasindonesia123.koyeb.app/ <br/>
 Reflection 1
 1. Clean code yang diterapkan di tugas kali ini adalah:
    1. Meaningful Names. Nama-nama package seperti model, controller, dan sebagainya sudah disesuaikan dengan penamaan model MVC Spring Boot sehingga diharapkan lebih terorganisir dengan baik dan mudah dibaca. Nama method sudah dinamai sesuai dengan fungsinya, seperti editProduct berarti untuk meng-edit, deleteProductByName berarti menghapus produk berdasarkan nama, dan seterusnya
