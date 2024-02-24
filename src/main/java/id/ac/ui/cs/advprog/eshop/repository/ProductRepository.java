@@ -47,9 +47,13 @@ public class ProductRepository {
 
     public Product editProduct(String name, Product newProduct) {
         Product product = findProductByName(name);
-        product.setProductName(newProduct.getProductName());
-        product.setProductQuantity(newProduct.getProductQuantity());
-        product.setProductId(newProduct.getProductId());
-        return product;
+        if (findProductByName(newProduct.getProductName()) != null) {
+            throw new ProductAlreadyExistsException("Product with name " + newProduct.getProductName() + " already exists.");
+        } else {
+            product.setProductName(newProduct.getProductName());
+            product.setProductQuantity(newProduct.getProductQuantity());
+            product.setProductId(newProduct.getProductId());
+            return product;
+        }
     }
 }

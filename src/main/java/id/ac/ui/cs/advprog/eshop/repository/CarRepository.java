@@ -1,5 +1,6 @@
 package id.ac.ui.cs.advprog.eshop.repository;
 import id.ac.ui.cs.advprog.eshop.model.Car;
+import id.ac.ui.cs.advprog.eshop.model.Product;
 import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -10,20 +11,34 @@ import java.util.UUID;
 public class CarRepository {
     static int id = 0;
     private List<Car> carData = new ArrayList<>();
+
     public Car create(Car car) {
-        if (car.getCarId() == null) {
-            UUID uuid = UUID.randomUUID();
-            car.setCarId(uuid.toString());
+        Car sameCarName = findCarByName(car.getCarName());
+        if (sameCarName != null && sameCarName.getCarColor().equals(car.getCarColor())) {
+            sameCarName.setCarQuantity(sameCarName.getCarQuantity() + car.getCarQuantity());
+            return sameCarName;
+        } else {
+            carData.add(car);
+            return car;
         }
-        carData.add(car);
-        return car;
     }
+
     public Iterator<Car> findAll() {
         return carData.iterator();
     }
+
     public Car findById(String id) {
-        for (Car car: carData) {
+        for (Car car : carData) {
             if (car.getCarId().equals(id)) {
+                return car;
+            }
+        }
+        return null;
+    }
+
+    public Car findCarByName(String name) {
+        for (Car car : carData) {
+            if (car.getCarName().equals(name)) {
                 return car;
             }
         }
@@ -33,7 +48,9 @@ public class CarRepository {
     public void update(String id, Car updatedCar) {
         for (int i = 0; i < carData.size(); i++) {
             Car car = carData.get(i);
-            if (car.getCarId().equals(id)) {
+            if (car.getCarId().equals(id) && findCarByName(updatedCar.getCarName()) != null) {
+                throw new ProductAlreadyExistsException("Product with name " + updatedCar.getCarName() + " and " + updatedCar.getCarColor() + "color " + " already exists.");
+            } else {
                 car.setCarName(updatedCar.getCarName());
                 car.setCarColor(updatedCar.getCarColor());
                 car.setCarQuantity(updatedCar.getCarQuantity());
