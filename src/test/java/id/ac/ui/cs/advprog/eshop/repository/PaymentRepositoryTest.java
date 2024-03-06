@@ -22,7 +22,7 @@ class PaymentRepositoryTest {
                 Map.of(PaymentMethodFeature.VOUCHER_CODE.getFeature(), "ESHOP1234567890"));
         payments.add(payment1);
         Payment payment2 = new Payment("2", PaymentMethodFeature.BANK_TRANSFER.getFeature(),
-                Map.of("BNI", "1234567890"));
+                Map.of("Jalan Sendirian", "1234567890"));
         payments.add(payment2);
     }
 
@@ -36,8 +36,8 @@ class PaymentRepositoryTest {
         assertEquals(payment.getId(), findResult.getId());
         assertEquals(payment.getMethod(), findResult.getMethod());
         assertEquals(payment.getPaymentData().keySet(), findResult.getPaymentData().keySet());
-        assertEquals(payment.getPaymentData().get("BNI"),
-                findResult.getPaymentData().get("BNI"));
+        assertEquals(payment.getPaymentData().get("Jalan Sendirian"),
+                findResult.getPaymentData().get("Jalan Sendirian"));
         assertEquals(payment.getStatus(), findResult.getStatus());
     }
 
@@ -54,8 +54,8 @@ class PaymentRepositoryTest {
         assertEquals(payment.getId(), findResult.getId());
         assertEquals(payment.getMethod(), findResult.getMethod());
         assertEquals(payment.getPaymentData().keySet(), findResult.getPaymentData().keySet());
-        assertEquals(payment.getPaymentData().get("BNI"),
-                findResult.getPaymentData().get("BNI"));
+        assertEquals(payment.getPaymentData().get("Jalan Sendirian"),
+                findResult.getPaymentData().get("Jalan Sendirian"));
         assertEquals(OrderStatus.SUCCESS.getValue(), findResult.getStatus());
     }
 
@@ -70,8 +70,8 @@ class PaymentRepositoryTest {
         assertEquals(payments.get(1).getMethod(), findResult.getMethod());
         assertEquals(payments.get(1).getPaymentData().keySet(),
                 findResult.getPaymentData().keySet());
-        assertEquals(payments.get(1).getPaymentData().get("BNI"),
-                findResult.getPaymentData().get("BNI"));
+        assertEquals(payments.get(1).getPaymentData().get("Jalan Sendirian"),
+                findResult.getPaymentData().get("Jalan Sendirian"));
         assertEquals(payments.get(1).getStatus(), findResult.getStatus());
     }
 

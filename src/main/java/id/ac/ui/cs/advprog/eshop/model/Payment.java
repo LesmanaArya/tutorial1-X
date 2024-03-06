@@ -1,5 +1,6 @@
 package id.ac.ui.cs.advprog.eshop.model;
 
+import id.ac.ui.cs.advprog.eshop.enums.OrderStatus;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -25,12 +26,11 @@ public class Payment {
         this.status = "WAITING_PAYMENT";
     }
     public void setStatus(String status) {
-        String[] statusList = {"WAITING_PAYMENT", "FAILED", "SUCCESS", "CANCELLED"};
-        if (Arrays.stream(statusList).noneMatch(item -> (item.equals(status)))) {
-            throw new IllegalArgumentException();
-        } else {
-            this.status = status;
-        }
+            if (OrderStatus.contains(status)) {
+                this.status = status;
+            } else {
+                throw new IllegalArgumentException();
+            }
     }
     public Payment(String id, String method, Map<String, String> paymentData,  String status) {
         this(id, method, paymentData);

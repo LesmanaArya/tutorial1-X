@@ -1,4 +1,5 @@
 package id.ac.ui.cs.advprog.eshop.service;
+import id.ac.ui.cs.advprog.eshop.model.Product;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.*;
@@ -34,12 +35,19 @@ class PaymentServiceTest {
 
     @Test
     void testCreatePayment() {
-        Payment payment = payments.get(1);
-        Order order = new Order(null, null, 0L, null);
+        Payment payment = payments.get(0);
+        List<Product> products = new ArrayList<>();
+        Product product1 = new Product();
+        product1.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        product1.setProductName("Sampo Cap Bambang");
+        product1.setProductQuantity(2);
+        products.add(product1);
+
+        Order order1 = new Order("13652556-012a-4c07-b546-54eb1396d79b",
+                products, 1708560000L, "Safira Sudrajat");
         doReturn(payment).when(paymentRepository).save(payment);
 
-        Payment result = paymentService.addPayment(order, payment.getMethod(),
-                payment.getPaymentData());
+        Payment result = paymentService.addPayment(payment);
         verify(paymentRepository, times(1)).save(payment);
         assertEquals(payment.getId(), result.getId());
     }
@@ -103,7 +111,7 @@ class PaymentServiceTest {
 
     @Test
     void testFindByIdIfIdNotFound() {
-        doReturn(null).when(paymentRepository).findById("12345");
-        assertNull(paymentService.getPayment("12345"));
+        doReturn(null).when(paymentRepository).findById("wkwk");
+        assertNull(paymentService.getPayment("wkwk"));
     }
 }

@@ -40,4 +40,8 @@ public class PaymentRepository {
         }
         return result;
     }
+
+    public List<Payment> findAll() {
+        return paymentData;
+    }
 }
