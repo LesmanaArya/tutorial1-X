@@ -23,7 +23,7 @@ public class OrderRepositoryTest {
         Product product1 = new Product();
         product1.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
         product1.setProductName("Sampo Cap Bambang");
-        product1.setProductQuantity(69);
+        product1.setProductQuantity(2);
         products.add(product1);
 
         orders = new ArrayList<>();
@@ -35,7 +35,7 @@ public class OrderRepositoryTest {
                 products, 1708570000L, "Safira Sudrajat");
         orders.add(order2);
         Order order3 = new Order("13652556-012a-4c07-b546-54eb1396d79d",
-                products, 1708570000L, "Safira Sudrajat");
+                products, 1708570000L, "Bambang Sudrajat");
         orders.add(order3);
     }
 
@@ -65,7 +65,7 @@ public class OrderRepositoryTest {
         assertEquals(order.getId(), findResult.getId());
         assertEquals(order.getOrderTime(), findResult.getOrderTime());
         assertEquals(order.getAuthor(), findResult.getAuthor());
-        assertEquals(order.getStatus(), findResult.getStatus());
+        assertEquals(OrderStatus.SUCCESS.getValue(), findResult.getStatus());
     }
 
     @Test
@@ -75,11 +75,10 @@ public class OrderRepositoryTest {
         }
 
         Order findResult = orderRepository.findById(orders.get(1).getId());
-        assertEquals(order.getId(), result.getId());
-        assertEquals(order.getId(), findResult.getId());
-        assertEquals(order.getOrderTime(), findResult.getOrderTime());
-        assertEquals(order.getAuthor(), findResult.getAuthor());
-        assertEquals(order.getStatus(), findResult.getStatus());
+        assertEquals(orders.get(1).getId(), findResult.getId());
+        assertEquals(orders.get(1).getOrderTime(), findResult.getOrderTime());
+        assertEquals(orders.get(1).getAuthor(), findResult.getAuthor());
+        assertEquals(orders.get(1).getStatus(), findResult.getStatus());
     }
 
     @Test
