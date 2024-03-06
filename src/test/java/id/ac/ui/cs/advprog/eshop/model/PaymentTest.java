@@ -1,5 +1,6 @@
 package id.ac.ui.cs.advprog.eshop.model;
 import id.ac.ui.cs.advprog.eshop.enums.OrderStatus;
+import id.ac.ui.cs.advprog.eshop.enums.PaymentMethodFeature;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -11,47 +12,47 @@ import java.util.Map;
 public class PaymentTest {
     @Test
     public void testCreatePayment() {
-        Payment newPayment = new Payment("1", "voucherCode", Map.of("voucherCode", "ESHOP1234567890"));
+        Payment newPayment = new Payment("1", PaymentMethodFeature.VOUCHER_CODE.getFeature(), Map.of(PaymentMethodFeature.VOUCHER_CODE.getFeature(), "ESHOP1234567890"));
         assertEquals("1", newPayment.getId());
-        assertEquals("voucherCode", newPayment.getMethod());
-        assertEquals(Map.of("voucherCode", "ESHOP1234567890"), newPayment.getPaymentData());
+        assertEquals(PaymentMethodFeature.VOUCHER_CODE.getFeature(), newPayment.getMethod());
+        assertEquals(Map.of(PaymentMethodFeature.VOUCHER_CODE.getFeature(), "ESHOP1234567890"), newPayment.getPaymentData());
         assertEquals(OrderStatus.WAITING_PAYMENT.getValue(), newPayment.getStatus());
     }
 
     @Test
     public void testCreatePaymentWithStatus() {
-        Payment newPayment = new Payment("1", "voucherCode", Map.of("voucherCode", "ESHOP1234567890"), OrderStatus.SUCCESS.getValue());
+        Payment newPayment = new Payment("1", PaymentMethodFeature.VOUCHER_CODE.getFeature(), Map.of(PaymentMethodFeature.VOUCHER_CODE.getFeature(), "ESHOP1234567890"), OrderStatus.SUCCESS.getValue());
         assertEquals("1", newPayment.getId());
-        assertEquals("voucherCode", newPayment.getMethod());
-        assertEquals(Map.of("voucherCode", "ESHOP1234567890"), newPayment.getPaymentData());
+        assertEquals(PaymentMethodFeature.VOUCHER_CODE.getFeature(), newPayment.getMethod());
+        assertEquals(Map.of(PaymentMethodFeature.VOUCHER_CODE.getFeature(), "ESHOP1234567890"), newPayment.getPaymentData());
         assertEquals(OrderStatus.SUCCESS.getValue(), newPayment.getStatus());
     }
 
     @Test
     void testCreatePaymentWithEmptyPaymentData() {
-        assertThrows(IllegalArgumentException.class, () -> new Payment("1", "voucherCode", Map.of()));
+        assertThrows(IllegalArgumentException.class, () -> new Payment("1", PaymentMethodFeature.VOUCHER_CODE.getFeature(), Map.of()));
     }
 
     @Test
     void testCreatePaymentWithInvalidStatus() {
-        assertThrows(IllegalArgumentException.class, () -> new Payment("1", "voucherCode", Map.of("voucherCode", "ESHOP1234567890"), "INVALID_STATUS"));
+        assertThrows(IllegalArgumentException.class, () -> new Payment("1", PaymentMethodFeature.VOUCHER_CODE.getFeature(), Map.of(PaymentMethodFeature.VOUCHER_CODE.getFeature(), "ESHOP1234567890"), "INVALID_STATUS"));
     }
 
     @Test
     void testSetStatusToCancelled() {
-        Payment newPayment = new Payment("1", "voucherCode", Map.of("voucherCode", "ESHOP1234567890"));
+        Payment newPayment = new Payment("1", PaymentMethodFeature.VOUCHER_CODE.getFeature(), Map.of(PaymentMethodFeature.VOUCHER_CODE.getFeature(), "ESHOP1234567890"));
         newPayment.setStatus(OrderStatus.CANCELLED.getValue());
         assertEquals(OrderStatus.CANCELLED.getValue(), newPayment.getStatus());
     }
 
     @Test
     void testSetInvalidStatus() {
-        Payment newPayment = new Payment("1", "voucherCode", Map.of("voucherCode", "ESHOP1234567890"));
+        Payment newPayment = new Payment("1", PaymentMethodFeature.VOUCHER_CODE.getFeature(), Map.of(PaymentMethodFeature.VOUCHER_CODE.getFeature(), "ESHOP1234567890"));
         assertThrows(IllegalArgumentException.class, () -> newPayment.setStatus("INVALID_STATUS"));
     }
 
     @Test
     void testSetStatusWithEmptyPaymentData() {
-        assertThrows(IllegalArgumentException.class, () -> new Payment("1", "voucherCode", Map.of()));
+        assertThrows(IllegalArgumentException.class, () -> new Payment("1", PaymentMethodFeature.VOUCHER_CODE.getFeature(), Map.of()));
     }
 }
