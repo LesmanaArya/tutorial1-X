@@ -41,7 +41,7 @@ public class PaymentTest {
     void testSetStatusToCancelled() {
         Payment newPayment = new Payment("1", "voucherCode", Map.of("voucherCode", "ESHOP1234567890"));
         newPayment.setStatus(OrderStatus.CANCELLED.getValue());
-        assertEquals(OrderStatus.SUCCESS.getValue(), newPayment.getStatus());
+        assertEquals(OrderStatus.CANCELLED.getValue(), newPayment.getStatus());
     }
 
     @Test
