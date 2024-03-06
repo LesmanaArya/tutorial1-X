@@ -47,7 +47,8 @@ class PaymentServiceTest {
                 products, 1708560000L, "Safira Sudrajat");
         doReturn(payment).when(paymentRepository).save(payment);
 
-        Payment result = paymentService.addPayment(payment);
+        Payment result = paymentService.addPayment(order1, "voucherCode",
+                Map.of("voucherCode", "ESHOP1234567890"));
         verify(paymentRepository, times(1)).save(payment);
         assertEquals(payment.getId(), result.getId());
     }
