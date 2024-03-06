@@ -9,6 +9,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class OrderTest {
     private List<Product> products;
@@ -53,14 +54,14 @@ public class OrderTest {
         assertEquals("13652556-012a-4c07-b546-54eb1396d79b", order.getId());
         assertEquals(1708560000L, order.getOrderTime());
         assertEquals("Safira Sudrajat", order.getAuthor());
-        assertEquals(OrderStatus.WAITING_PAYMENT.getValue(), order.getStatus());
+        assertEquals("WAITING_PAYMENT", order.getStatus());
     }
 
     @Test
     void testCreateOrderSuccessStatus() {
         Order order = new Order("13652556-012a-4c07-b546-54eb1396d79b",
                 this.products, 1708560000L, "Safira Sudrajat", "SUCCESS");
-        assertEquals(OrderStatus.SUCCESS.getValue(), order.getStatus());
+        assertEquals("SUCCESS", order.getStatus());
     }
 
     @Test
@@ -76,7 +77,7 @@ public class OrderTest {
         Order order = new Order("13652556-012a-4c07-b546-54eb1396d79b",
                 this.products, 1708560000L, "Safira Sudrajat");
         order.setStatus("CANCELLED");
-        assertEquals(OrderStatus.CANCELLED.getValue(), order.getStatus());
+        assertEquals("CANCELLED", order.getStatus());
     }
 
     @Test
