@@ -12,7 +12,7 @@ import java.util.Arrays;
 @Getter
 public class Order {
     String id;
-    List<Product> products;
+    List <Product> products;
     Long orderTime;
     String author;
     String status;
@@ -31,12 +31,8 @@ public class Order {
     }
 
     public Order(String id, List<Product> products, Long orderTime, String author, String status) {
-        String[] statusList = {"WAITING_PAYMENT", "FAILED", "SUCCESS", "CANCELLED"};
-        if (Arrays.stream(statusList).noneMatch(item -> (item.equals(status)))) {
-            throw new IllegalArgumentException();
-        } else {
-            this.status = status;
-        }
+        this(id, products, orderTime, author);
+        this.setStatus(status);
     }
 
     public void setStatus(String status) {
